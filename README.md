@@ -2,7 +2,7 @@
 
 ## Description
 
-Live multi-player hangman game. User can join a live game of hangman with friends. Hangout and chat with friends. Game will be delploy on aws.
+Live multi-player hangman game. User can join a live game of hangman with friends. Hangout and chat with friends. Game will be deploy on aws.
 
 ## Members
 
