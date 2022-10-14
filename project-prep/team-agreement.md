@@ -19,7 +19,7 @@
   - Alfredo Orquiz: I would like to grow in the JavaScript technical proficiency. Better understand What the code that I am writing does, as well have a greater knowledge of the tools, as well s their implementation. I would also like to get better with the writers block. Whenever I have to start coding with JavaScript, I always freeze and don't know how to start.
   - Jeffrey Smith: I want to get over the fear of making mistakes in coding and physical do the stuff that create my fear.
   - Rhea Carillo: I would like to develop greater strengths in speaking.
-  - 
+  - David Suy: I will use my skills and experiences to help with the project.
 - Knowing that every person in your team needs to understand all aspects of the project, how do you plan to approach the day-to-day work?
   - The team has agreed to work from 9 a.m. to 6 p.m. We can be reached out throughout Slack, but there is no guaranteed answer that is required by each team member.
 ***NOTE: Undoing, Redoing, Replacing, or otherwise steamrolling the project as an individual is considered to be unacceptable. Account for the inevitable divergence of ideas, execution tasks, and assignments of duties here.***
