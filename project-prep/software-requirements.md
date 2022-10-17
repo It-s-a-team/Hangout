@@ -61,6 +61,14 @@ Stretch
 What stretch goals are you going to aim for?
   - Chat is our main stretch goal.
 
+## User Stories
+  - As a user, I want to be able to play a game of hangman that is politically correct.
+  - In the game I want to be able to either create a game so that I can invite someone to play against the computer, join a group by accepting an invite, or play alone against the computer.
+  - I want people to be able to sign up by creating an account, and be able to sign into their own account to keep track of their winning scores.
+  - I also want users to be able to delete their account
+  - As a user I want to be able to chat with the fellow player
+  - As a user I want to be able to be given a turn to guess a letter.
+
 Functional Requirements
 List the functionality of your product. This will consist of tasks such as the following:
 
@@ -102,3 +110,5 @@ If you are stuck on what non-functional requirements are, do a quick online sear
 You MUST describe what the non-functional requirement is and how it will be implemented. Simply saying “Our project will be testable for testibility” is NOT acceptable. Tell us how, why, and what.
 
   - Project will have testing setup. Testing will be done with jest. The test will check to make sure our basic functionaltiy work as should. Testing will be run frequently and prior to deployment.
+## UML, Wireframe, and Whiteboard
+https://projects.invisionapp.com/freehand/document/NtFl5NE00
