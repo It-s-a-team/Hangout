@@ -23,4 +23,4 @@ class Player {
 }
 
 let newPlayer = new Player();
-newPlayer.submitLetter("z");
+newPlayer.submitLetter("v");
