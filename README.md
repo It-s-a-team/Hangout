@@ -13,4 +13,6 @@ Alfredo Orquiz
 
 ## Project Management
 
-Trello: https://trello.com/b/QmnI6hI4/hangout
+- [Trello](https://trello.com/b/QmnI6hI4/hangout)
+- [Front-end Deployed Site](https://hangout-live.netlify.app)
+- [Back-end Deployed Site](https://hangout-live-backend.herokuapp.com)
