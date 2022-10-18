@@ -11,7 +11,15 @@ socket.on("gameStart", (payload) => {
   console.log(payload);
 });
 
+socket.on("nextTurn", (payload) => {
+  console.log(payload);
+})
+
 socket.emit("gameStart", "Game Starting!!!");
+
+socket.on('gameOver', (payload) =>  {
+  console.log(payload);
+});
 
 class Player {
   constructor() {
@@ -23,4 +31,4 @@ class Player {
 }
 
 let newPlayer = new Player();
-newPlayer.submitLetter("v");
+newPlayer.submitLetter("j");
