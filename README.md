@@ -1,4 +1,4 @@
-# thatOneProject
+# Hangout
 
 ## Description
 
