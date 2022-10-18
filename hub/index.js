@@ -34,10 +34,25 @@ hangout.on('connection', (socket) => {
 
   socket.on('letterSubmit', (payload) => {
     console.log(payload);
-    handleLetterSubmit(payload);
+
+    // Creating a variable for the new word
+    let newWord = handleLetterSubmit(payload);
+    let anyX = currentWord.includes("X");
+    console.log("I\'m Here", currentWord);
+    console.log(anyX);
+    if (anyX === true && lives > 0) {
+      socket.emit("nextTurn", "Your\'re Next!");
+    } else {
+      if (anyX === false) {
+        socket.emit('gameOver', "Congratulations, YOU WON!");
+      } else {
+        socket.emit('gameOver', "Sorry, you lost");
+      }
+    }
   });
 });
 
+// Creating a function that will continue to run until we get the desired number of letters.
 function getRandomString(length) {
   let str = "";
   do {
