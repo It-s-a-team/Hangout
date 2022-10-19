@@ -14,9 +14,9 @@ hangout.on("connection", (socket) => {
 
   socket.on("gameStart", (payload) => {
     payload = {
-      turn: "player1",
-      lives,
-      currentWord: currentWord,
+      turn: newGame.turn,
+      lives: newGame.lives,
+      currentWord: newGame.currentWord,
     };
 
     socket.emit("gameStart", payload);
@@ -39,11 +39,11 @@ hangout.on("connection", (socket) => {
     console.log(payload);
 
     // Creating a variable for the new word
-    let newWord = handleLetterSubmit(payload);
-    let anyX = currentWord.includes("X");
-    console.log("I'm Here", currentWord);
+    let newWord = newGame.handleLetterSubmit(payload);
+    let anyX = newGame.currentWord.includes("X");
+    console.log("I'm Here", newGame.currentWord);
     console.log(anyX);
-    if (anyX === true && lives > 0) {
+    if (anyX === true && newGame.lives > 0) {
       socket.emit("nextTurn", "Your're Next!");
     } else {
       if (anyX === false) {
@@ -55,51 +55,91 @@ hangout.on("connection", (socket) => {
   });
 });
 
-// Creating a function that will continue to run until we get the desired number of letters.
-function getRandomString(length) {
-  let str = "";
-  do {
-    str = randomWords({ exactly: 1, maxLength: length })[0];
-    console.log(str);
-  } while (str.length !== length);
-  return str;
-}
+class Game {
+  constructor(props) {
+    this.roomName = props.roomName;
+    this.players = props.players;
+    this.turn = this.players[0];
+    this.lives = props.lives;
+    this.difficulty = props.difficulty;
+    this.secretWord = props.secretWord;
+    this.currentWord = props.currentWord;
+    this.strLeft = "";
+    this.messages = props.message;
+  }
 
-let secretString = getRandomString(5);
-console.log(secretString);
-let currentWord = "XXXXX";
-let strLeft = secretString;
-let lives = 3;
-
-function handleLetterSubmit(letter) {
-  console.log("handleLetter", letter);
-
-  if (strLeft.includes(letter)) {
-    let newWord = currentWord;
-    let tempStr = secretString;
-
-    while (tempStr.includes(letter)) {
-      let index = tempStr.indexOf(letter);
-      // let index2 = newWord.indexOf(letter);
-      tempStr =
-        tempStr.substring(0, index) +
-        "X" +
-        tempStr.substring(index + 1, tempStr.length);
-
-      newWord =
-        newWord.substring(0, index) +
-        letter +
-        newWord.substring(index + 1, currentWord.length);
+  handleDifficulty() {
+    if (this.difficulty === "easy") {
+      this.lives = 6;
+      this.secretWord = this.getRandomString(5);
+    } else if (this.difficulty === "medium") {
+      this.lives = 4;
+      this.secretWord = this.getRandomString(7);
+    } else if (this.difficulty === "hard") {
+      this.lives = 2;
+      this.secretWord = this.getRandomString(9);
     }
+    this.strLeft = this.secretWord;
 
-    console.log(tempStr, newWord);
-    strLeft = tempStr;
-    currentWord = newWord;
-    return newWord;
-  } else {
-    --lives;
-    let message = "Sorry, no letter in word";
-    console.log(message, `You have ${lives} left`);
-    return message;
+    this.makeNewCurrentStr();
+  }
+
+  makeNewCurrentStr() {
+    let word = "";
+    for (let i = 0; i < this.secretWord.length; i++) {
+      word = word.concat("X");
+    }
+    this.currentWord = word;
+  }
+
+  getRandomString(length) {
+    let str = "";
+    do {
+      str = randomWords({ exactly: 1, maxLength: length })[0];
+      console.log(str);
+    } while (str.length !== length);
+    return str;
+  }
+
+  handleLetterSubmit(letter) {
+    console.log("handleLetter", letter);
+
+    if (this.strLeft.includes(letter)) {
+      let newWord = this.currentWord;
+      let tempStr = this.secretWord;
+      console.log(`newWord ${newWord}, tempStr ${tempStr}`);
+
+      while (tempStr.includes(letter)) {
+        let index = tempStr.indexOf(letter);
+        tempStr =
+          tempStr.substring(0, index) +
+          "X" +
+          tempStr.substring(index + 1, tempStr.length);
+
+        newWord =
+          newWord.substring(0, index) +
+          letter +
+          newWord.substring(index + 1, this.currentWord.length);
+      }
+
+      console.log(tempStr, newWord);
+      this.strLeft = tempStr;
+      this.currentWord = newWord;
+      return newWord;
+    } else {
+      --this.lives;
+      let message = "Sorry, no letter in word";
+      console.log(message, `You have ${this.lives} left`);
+      return message;
+    }
   }
 }
+
+let newGame = new Game({
+  roomName: "1234",
+  players: ["player1", "player2"],
+  difficulty: "hard",
+});
+newGame.handleDifficulty();
+
+console.log(newGame);
