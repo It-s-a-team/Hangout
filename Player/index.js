@@ -11,13 +11,17 @@ socket.on("gameStart", (payload) => {
   console.log(payload);
 });
 
+socket.on("chat", (message) => console.log(message));
+
 socket.on("nextTurn", (payload) => {
   console.log(payload);
-})
+});
+
+socket.on("newRoom", (payload) => console.log("rooms available", payload));
 
 socket.emit("gameStart", "Game Starting!!!");
 
-socket.on('gameOver', (payload) =>  {
+socket.on("gameOver", (payload) => {
   console.log(payload);
 });
 
@@ -28,7 +32,15 @@ class Player {
   submitLetter(letter) {
     socket.emit("letterSubmit", letter);
   }
+  join(room) {
+    socket.emit("join", room);
+  }
+  chat(message) {
+    socket.emit("chat", message);
+  }
 }
 
 let newPlayer = new Player();
-newPlayer.submitLetter("j");
+// newPlayer.join("1234");
+// newPlayer.chat("whats up");
+// newPlayer.submitLetter("o");
