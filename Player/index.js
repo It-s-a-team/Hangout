@@ -41,6 +41,6 @@ class Player {
 }
 
 let newPlayer = new Player();
-// newPlayer.join("1234");
-// newPlayer.chat("whats up");
-// newPlayer.submitLetter("o");
+newPlayer.join("1234");
+newPlayer.chat("whats up");
+newPlayer.submitLetter("t");
