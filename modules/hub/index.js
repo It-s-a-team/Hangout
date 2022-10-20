@@ -4,6 +4,7 @@ const io = require("socket.io");
 // const eventPool = require("./eventPool");
 const PORT = process.env.PORT || 3002;
 const randomWords = require("random-words");
+let newGame = null;
 
 const server = io(PORT, {
   cors: {
@@ -17,14 +18,27 @@ hangout.on("connection", (socket) => {
   console.log(`New Player connected!!!`, socket.id);
 
   socket.on("gameStart", (payload) => {
-    payload = {
+    newGame = new Game({
+      roomName: "1234",
+      players: ["player1", "player2"],
+      difficulty: payload.difficulty,
+    });
+    newGame.handleDifficulty();
+    let newPayload = {
       turn: newGame.turn,
       lives: newGame.lives,
       currentWord: newGame.currentWord,
     };
+    console.log(newGame);
+    // payload = {
+    //   turn: newGame.turn,
+    //   lives: newGame.lives,
+    //   currentWord: newGame.currentWord,
+    // };
+    console.log("startgame payload", newPayload);
     console.log("game started");
 
-    socket.emit("gameStart", payload);
+    socket.emit("gameStart", newPayload);
   });
 
   socket.on("join", (payload) => {
@@ -33,6 +47,8 @@ hangout.on("connection", (socket) => {
     socket.join(payload);
     hangout.emit("newRoom", "1234");
   });
+
+  socket.on("testing", (payload) => console.log(payload));
 
   socket.on("chat", (message) => {
     console.log(message);
@@ -76,6 +92,7 @@ class Game {
     this.turn = this.players[0];
     this.lives = props.lives;
     this.difficulty = props.difficulty;
+    // this.secretWord = this.handleDifficulty();
     this.secretWord = props.secretWord;
     this.currentWord = props.currentWord;
     this.strLeft = "";
@@ -149,11 +166,11 @@ class Game {
   }
 }
 
-let newGame = new Game({
-  roomName: "1234",
-  players: ["player1", "player2"],
-  difficulty: "medium",
-});
-newGame.handleDifficulty();
+// let newGame = new Game({
+//   roomName: "1234",
+//   players: ["player1", "player2"],
+//   difficulty: "medium",
+// });
+// newGame.handleDifficulty();
 
-console.log(newGame);
+// console.log(newGame);
