@@ -5,5 +5,5 @@
   "javascript.format.placeOpenBraceOnNewLineForFunctions": true,
   "javascript.format.placeOpenBraceOnNewLineForControlBlocks": true,
   "typescript.format.placeOpenBraceOnNewLineForFunctions": true,
-  "workbench.colorTheme": "Tomorrow Night Blue"
+  "workbench.colorTheme": "Default Dark+"
 }
