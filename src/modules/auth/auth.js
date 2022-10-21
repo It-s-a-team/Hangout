@@ -32,25 +32,22 @@ function getKey(header, callback)
 // function to verify the user on our route
 // this is just how we do it
 // errorFirstOrUserCallback is a callback function to just deny a request if the requester isn't who they say they are without even trying to run the function
-function verifyUser(req, errorFirstOrUserCallback)
+function verifyUser(token, errorFirstOrUserCallback)
 {
   try
   {
     // get the auth0/jwt token from the client's request
-    // the authorization was in the 'header' of the original request
-    // we .split(), so we can remove the `Bearer` from the request
-    // target [1], because we just want to get the second 'word' (which is the token itself) from the request
-    const token = req.headers.authorization.split(' ')[1];
-    //console.log(token);
-
     // the `.verify()` method is from the jwt package we imported/required
     // `getKey` is the function above this one, from the jwt docs
+    // go to https://www.npmjs.com/package/jsonwebtoken
+    // use `ctrl+f` and search for: `Verify using getKey callback` to get an example
     jwt.verify(token, getKey, {}, errorFirstOrUserCallback);
   }
   catch (error)
   {
-    errorFirstOrUserCallback('You\'re not the beast we were expecting 👀');
+    errorFirstOrUserCallback('Your token is bunk, my friend');
   }
 }
 
+// export our 'verifyUser' function to use when a client attempts to connect to a socket
 module.exports = verifyUser;
