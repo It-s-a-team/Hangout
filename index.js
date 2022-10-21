@@ -23,6 +23,8 @@ const io = new Server(server, {
   cors: {
     // `origin` is url of front-end
     //origin: `${ process.env.CLIENT_ORIGIN }` || 'http://localhost:3000',
+
+    // allow all origin URLs (which allows us to do multiplayer)
     origin:'*',
     credentials:true,
     methods: [ 'GET', 'POST' ],
