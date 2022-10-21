@@ -6,10 +6,10 @@ Live multi-player hangman game. User can join a live game of hangman with friend
 
 ## Members
 
-David Suy
-Jeffrey Smith
-Rhea Mimi Carillo
-Alfredo Orquiz
+- David Suy
+- Jeffrey Smith
+- Rhea Mimi Carillo
+- Alfredo Orquiz
 
 ## Project Management
 
