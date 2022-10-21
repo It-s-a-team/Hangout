@@ -1,4 +1,4 @@
-# Hangout
+# Hangout Server
 
 ## Description
 
