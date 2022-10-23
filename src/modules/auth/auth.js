@@ -11,13 +11,13 @@ const jwksClient = require('jwks-rsa');
 
 // don't forget to 'npm i jsonwebtoken jwks-rsa
 
-// the jwks uri come Auth0 account page -> advanced settings -> Endpoints -> 0auth -> JSON Web Key Set
+// the jwks uri comes from Auth0 account page -> advanced settings -> Endpoints -> 0auth -> JSON Web Key Set
 const client = jwksClient({
   jwksUri: process.env.JWKS_URI,
 });
 
 // this function will process the key and do the magic for us
-// this function is from the jsonwebtoken docs
+// function is from the jsonwebtoken docs
 // https://www.npmjs.com/package/jsonwebtoken
 // (search for auth0)
 function getKey(header, callback)
@@ -29,7 +29,7 @@ function getKey(header, callback)
   });
 }
 
-// function to verify the user on our route
+// function to verify's token
 // this is just how we do it
 // errorFirstOrUserCallback is a callback function to just deny a request if the requester isn't who they say they are without even trying to run the function
 function verifyUser(token, errorFirstOrUserCallback)
