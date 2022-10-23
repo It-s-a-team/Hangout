@@ -10,7 +10,7 @@ require("dotenv").config();
 const randomWords = require("random-words");
 let newGame = null;
 // import the auth0 functionality
-const verifyUser = require("./modules/auth/auth");
+const verifyUser = require("./src/modules/auth/auth");
 
 const PORT = process.env.PORT || 3002;
 
